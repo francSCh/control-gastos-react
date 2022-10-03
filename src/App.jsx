@@ -1,4 +1,4 @@
-import { useState } from 'react' 
+import { useState, useEffect } from 'react' 
 import Header from './components/Header'
 import IconoNuevoGasto from './img/nuevo-gasto.svg'
 import Modal from './components/Modal';
@@ -14,9 +14,21 @@ function App() {
   const [modal, setModal] = useState(false);
   const [animarModal, setAnimarModal] = useState(false);
 
+  const [gastoEditar, setGastoEditar] = useState({});
+
+  useEffect(() => {
+    if(Object.keys(gastoEditar).length > 0) {
+      setModal(true);
+ 
+      setTimeout(() => {
+        setAnimarModal(true);
+      }, 500);
+    }
+  }, [gastoEditar]);
 
   const handleNuevoGasto = () => {
     setModal(true);
+    setGastoEditar({});
 
     setTimeout(() => {
       setAnimarModal(true);
@@ -47,7 +59,8 @@ function App() {
           <>
             <main>
               <ListadoGastos 
-                gastos={gastos}/>
+                gastos={gastos}
+                setGastoEditar={setGastoEditar}/>
             </main>
             <div className='nuevo-gasto'>
               <img src={IconoNuevoGasto} alt='icono nuevo gasto' onClick={handleNuevoGasto}/>
@@ -59,7 +72,8 @@ function App() {
                     setModal={setModal}
                     animarModal={animarModal}
                     setAnimarModal={setAnimarModal}
-                    guardarGasto={guardarGasto}/>}
+                    guardarGasto={guardarGasto}
+                    gastoEditar={gastoEditar}/>}
     </div>
   )
 }

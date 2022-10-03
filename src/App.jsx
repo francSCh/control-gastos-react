@@ -39,6 +39,7 @@ function App() {
     if(gasto.id){
       //Actualizar
       setGastos(gastos.map(g => g.id === gasto.id ? gasto : g));
+      setGastoEditar({});
     }else{
       //Nuevo gasto
       gasto.id = generarId();
@@ -82,7 +83,8 @@ function App() {
                     animarModal={animarModal}
                     setAnimarModal={setAnimarModal}
                     guardarGasto={guardarGasto}
-                    gastoEditar={gastoEditar}/>}
+                    gastoEditar={gastoEditar}
+                    setGastoEditar={setGastoEditar}/>}
     </div>
   )
 }

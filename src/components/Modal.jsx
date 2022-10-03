@@ -9,6 +9,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
     const [cantidad, setCantidad] = useState('');
     const [categoria, setCategoria] = useState('');
 
+    //Ocultamos el modal
     const ocultarModal = () => {
         setAnimarModal(false);
 
@@ -17,6 +18,7 @@ const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
         }, 500);
     }
 
+    //Se dispara cuando le damos al submit
     const handleSubmit = e => {
         e.preventDefault();
 
